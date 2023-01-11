@@ -1,0 +1,72 @@
+{
+  "$schema": "https://github.com/hyperledger-labs/fablo/releases/download/1.1.0/schema.json",
+  "global": {
+    "fabricVersion": "2.4.0",
+    "tls": false,
+    "peerDevMode": false
+  },
+  "orgs": [
+    {
+      "organization": {
+        "name": "Orderer",
+        "domain": "orderer.com"
+      },
+      "orderers": [
+        {
+          "groupName": "group1",
+          "type": "solo",
+          "instances": 1
+        }
+      ]
+    },
+    {
+      "organization": {
+        "name": "User",
+        "domain": "user.com"
+      },
+      "peer": {
+        "instances": 1,
+        "db": "CouchDb"
+      }
+    },
+    {
+      "organization": {
+        "name": "Administrator",
+        "domain": "administrator.com"
+      },
+      "peer": {
+        "instances": 1,
+        "db": "CouchDb"
+      }
+    }
+  ],
+  "channels": [
+    {
+      "name": "warranty-channel",
+      "orgs": [
+        {
+          "name": "User",
+          "peers": [
+            "peer0"
+          ]
+        },
+        {
+          "name": "Administrator",
+          "peers": [
+            "peer0"
+          ]
+        }
+      ]
+    }
+  ],
+  "chaincodes": [
+    {
+      "name": "warranty-chaincode",
+      "version": "0.0.1",
+      "lang": "node",
+      "channel": "warranty-channel",
+      "directory": "./chaincodes/chaincode",
+      "endorsement": "OR('UserMSP.member', 'AdministratorMSP.member')"
+    }
+  ]
+}

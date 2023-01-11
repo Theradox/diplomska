@@ -1,0 +1,37 @@
+{
+  "name": "fablo-test-network-user",
+  "description": "Connection profile for User in Fablo network",
+  "version": "1.0.0",
+  "client": {
+    "organization": "User"
+  },
+  "organizations": {
+    "User": {
+      "mspid": "UserMSP",
+      "peers": [
+        "peer0.user.com",
+        "peer0.administrator.com"
+      ],
+      "certificateAuthorities": [
+        "ca.user.com"
+      ]
+    }
+  },
+  "peers": {
+    "peer0.user.com": {
+      "url": "grpc://localhost:7041"
+    },
+    "peer0.administrator.com": {
+      "url": "grpc://localhost:7061"
+    }
+  },
+  "certificateAuthorities": {
+    "ca.user.com": {
+      "url": "http://localhost:7040",
+      "caName": "ca.user.com",
+      "httpOptions": {
+        "verify": false
+      }
+    }
+  }
+}

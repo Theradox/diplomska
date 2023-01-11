@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  blockchain_db:
+    image: mysql:latest
+    container_name: backend_app_db
+    environment:
+      MYSQL_ROOT_PASSWORD: blockchain_password
+      MYSQL_DATABASE: blockchain
+      MYSQL_USER: blockchain_user
+      MYSQL_PASSWORD: blockchain_password
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - blockchain-volume:/var/lib/mysql
+volumes:
+  blockchain-volume:

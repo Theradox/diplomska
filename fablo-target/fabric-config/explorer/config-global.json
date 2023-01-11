@@ -1,0 +1,13 @@
+{
+  "network-configs": {
+    "network-user": {
+      "name": "Network of User",
+      "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-user.json"
+    },
+    "network-administrator": {
+      "name": "Network of Administrator",
+      "profile": "/opt/explorer/app/platform/fabric/connection-profile/connection-profile-administrator.json"
+    }
+  },
+  "license": "Apache-2.0"
+}
