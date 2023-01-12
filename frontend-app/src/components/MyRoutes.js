@@ -46,6 +46,8 @@ export default function MyRoutes() {
                     <Route path='/retailer-warranty-history' element={isLoggedIn ? <RetailerWarrantyHistory/> : <Navigate to='/login'/>}/>
                     <Route path='/retailer-warranty-assign' element={isLoggedIn ? <RetailerAssignWarrantyOwnership/> : <Navigate to='/login'/>}/>
 
+                    
+                    <Route path='/all-warranties' element={isLoggedIn ? <UserGetWarranties/> : <Navigate to='/login'/>}/>
                     <Route path='/my-warranties' element={isLoggedIn ? <UserWarranties/> : <Navigate to='/login'/>}/>
                     <Route path='/user-warranty-detail' element={isLoggedIn ? <UserWarrantyDetail/> : <Navigate to='/login'/>}/>
                     <Route path='/user-warranty-history' element={isLoggedIn ? <UserWarrantyHistory/> : <Navigate to='/login'/>}/>

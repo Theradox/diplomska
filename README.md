@@ -9,8 +9,9 @@
 
 docker exec cli.user.com peer chaincode invoke peer0.user.com -C "warranty-channel" -n "warranty-chaincode" -c '{"Args":["WarrantyContract:AssignWarrantyOwnership", "asd123", "BojanOwner"]}'
 
+docker exec cli.user.com peer chaincode invoke peer0.user.com -C "warranty-channel" -n "warranty-chaincode" -c '{"Args":["WarrantyContract:GetAllWarranties"]}'
 
-docker exec cli.user.com peer chaincode invoke peer0.user.com -C "warranty-channel" -n "warranty-chaincode" -c '{"Args":["WarrantyContract:CreateWarranty", "asd123", "BojanIssuer", "BojanService", "2024-01-02"]}'
+docker exec cli.user.com peer chaincode invoke peer0.user.com -C "warranty-channel" -n "warranty-chaincode" -c '{"Args":["WarrantyContract:CreateWarranty", "asd1234", "BojanIssuer", "bojanOwner", "BojanService", "2024-01-02"]}'
 
 
 docker exec cli.user.com peer chaincode invoke peer0.user.com -C "warranty-channel" -n "warranty-chaincode" -c '{"Args":["WarrantyContract:QueryWarrantiesByOwner", "aa"]}'

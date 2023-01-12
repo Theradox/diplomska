@@ -121,17 +121,29 @@ function DashboardContent() {
   }
 
   const renderOptions = (organization) => {
-    if (organization === 'retailer') {
+    if (organization === 'user') {
       return (
         <Container>
-          <Link to={"/warranties"}>
+          <Link to={"/all-warranties"}>
           <ListItemButton>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
-            <ListItemText primary="Warranties" />
+            <ListItemText primary="All Warranties" />
           </ListItemButton>
           </Link>
+
+        <Divider sx={{ my: 1 }} />
+
+        <Link to={"/my-warranties"}>
+          <ListItemButton>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="My Warranties" />
+          </ListItemButton>
+          </Link>
+
         <Divider sx={{ my: 1 }} />
 
         <Link to={"/create-warranty"}>
@@ -157,18 +169,20 @@ function DashboardContent() {
         </Link>
       );
 
-    } else if (organization === 'user') {
-      return (
-        <Link to={"/my-warranties"}>
-        <ListItemButton>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="My Warranties" />
-        </ListItemButton>
-        </Link>
-      );
-     }
+    } 
+    
+    // else if (organization === 'user') {
+    //   return (
+    //     <Link to={"/my-warranties"}>
+    //     <ListItemButton>
+    //       <ListItemIcon>
+    //         <DashboardIcon />
+    //       </ListItemIcon>
+    //       <ListItemText primary="My Warranties" />
+    //     </ListItemButton>
+    //     </Link>
+    //   );
+    //  }
   }
 
   const [open, setOpen] = React.useState(true);

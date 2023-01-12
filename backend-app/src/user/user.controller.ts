@@ -36,7 +36,7 @@ export class UserController {
     }
 
     @Get('/warranties')
-    public async allWarranties(@Req() request, @Res() response) {
+    public async getAllWarranties(@Req() request, @Res() response) {
         const warranties = await this.userService.getAllWarranties(request.headers.authorization);
         return response.status(HttpStatus.OK).json(warranties);
     }
