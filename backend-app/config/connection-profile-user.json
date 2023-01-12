@@ -10,6 +10,7 @@
       "mspid": "UserMSP",
       "peers": [
         "peer0.user.com",
+        "peer0.retailer.com",
         "peer0.administrator.com"
       ],
       "certificateAuthorities": [
@@ -21,8 +22,11 @@
     "peer0.user.com": {
       "url": "grpc://localhost:7041"
     },
-    "peer0.administrator.com": {
+    "peer0.retailer.com": {
       "url": "grpc://localhost:7061"
+    },
+    "peer0.administrator.com": {
+      "url": "grpc://localhost:7081"
     }
   },
   "certificateAuthorities": {

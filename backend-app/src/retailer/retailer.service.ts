@@ -65,6 +65,8 @@ export class RetailerService {
 
     public async createWarranty(identityKey: string, warrantyModel: WarrantyModel): Promise<WarrantyModel> {
         let result;
+        const initalOwner = this.authService.extractUsername(identityKey).toString();
+
         await this.ledgerService.getContract(
             this.authService.extractUsername(identityKey),
             this.organization
@@ -73,6 +75,7 @@ export class RetailerService {
                 result = await contract.submitTransaction('CreateWarranty',
                     warrantyModel.id.toString(),
                     warrantyModel.issuer.toString(),
+                    initalOwner,
                     warrantyModel.warrantyService.toString(),
                     warrantyModel.warrantyExpirationDate.toString());
                 console.log(`Transaction has been evaluated, result is: ${result.toString()}`);

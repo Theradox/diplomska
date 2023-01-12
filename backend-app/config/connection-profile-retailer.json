@@ -1,20 +1,20 @@
 {
-  "name": "fablo-test-network-administrator",
-  "description": "Connection profile for Administrator in Fablo network",
+  "name": "fablo-test-network-retailer",
+  "description": "Connection profile for Retailer in Fablo network",
   "version": "1.0.0",
   "client": {
-    "organization": "Administrator"
+    "organization": "Retailer"
   },
   "organizations": {
-    "Administrator": {
-      "mspid": "AdministratorMSP",
+    "Retailer": {
+      "mspid": "RetailerMSP",
       "peers": [
         "peer0.user.com",
         "peer0.retailer.com",
         "peer0.administrator.com"
       ],
       "certificateAuthorities": [
-        "ca.administrator.com"
+        "ca.retailer.com"
       ]
     }
   },
@@ -30,9 +30,9 @@
     }
   },
   "certificateAuthorities": {
-    "ca.administrator.com": {
-      "url": "http://localhost:7080",
-      "caName": "ca.administrator.com",
+    "ca.retailer.com": {
+      "url": "http://localhost:7060",
+      "caName": "ca.retailer.com",
       "httpOptions": {
         "verify": false
       }

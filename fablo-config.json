@@ -31,6 +31,16 @@
     },
     {
       "organization": {
+        "name": "Retailer",
+        "domain": "retailer.com"
+      },
+      "peer": {
+        "instances": 1,
+        "db": "CouchDb"
+      }
+    },
+    {
+      "organization": {
         "name": "Administrator",
         "domain": "administrator.com"
       },
@@ -51,6 +61,12 @@
           ]
         },
         {
+          "name": "Retailer",
+          "peers": [
+            "peer0"
+          ]
+        },
+        {
           "name": "Administrator",
           "peers": [
             "peer0"
@@ -66,7 +82,7 @@
       "lang": "node",
       "channel": "warranty-channel",
       "directory": "./chaincodes/chaincode",
-      "endorsement": "OR('UserMSP.member', 'AdministratorMSP.member')"
+      "endorsement": "OR('UserMSP.member', 'RetailerMSP.member', 'AdministratorMSP.member')"
     }
   ]
 }
