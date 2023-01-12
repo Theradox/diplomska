@@ -4,6 +4,8 @@
 /frontend-app/node_modules
 /backend-app/node_modules
 
+/fablo-target
+
 # Logs
 logs
 *.log
