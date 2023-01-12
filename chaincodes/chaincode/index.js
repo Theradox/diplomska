@@ -111,11 +111,12 @@ class WarrantyContract extends Contract {
      * @param ctx the transaction context
      * @param warrantyId the id of the warranty
      * @param warrantyIssuer issuer of the warranty (Retailer)
+     * @Param warrantyOwner owner of the warranty
      * @param warrantyService servicer of the warranty (Service or Retailer)
      * @param warrantyExpirationDate date of expiration of the warranty
      * @returns details for the created warranty
      */
-    async CreateWarranty(ctx, warrantyId, warrantyIssuer, warrantyService, warrantyExpirationDate) {
+    async CreateWarranty(ctx, warrantyId, warrantyIssuer, warrantyOwner, warrantyService, warrantyExpirationDate) {
 
         // Check minter authorization 
         const clientMSPID = ctx.clientIdentity.getMSPID();
@@ -123,14 +124,14 @@ class WarrantyContract extends Contract {
         //     throw new Error('client is not authorized to create new warranty');
         // }
 
-        const owner = ctx.clientIdentity.getID();
+        // const owner = ctx.clientIdentity.getID();
+
         let warranty = new Warranty();
         let initialWarrantyStatus = WarrantyStatus.CREATED;
-        let warrantyIssueDate = await ctx.stub.getTxTimestamp();
+        let warrantyIssueDate = await ctx.stub.getDateTimestamp();
         warranty.id = warrantyId;
         warranty.issuer = warrantyIssuer;
-        warranty.owner = owner;
-        // warranty.owner = warrantyOwner;
+        warranty.owner = warrantyOwner;
         warranty.warrantyStatus = initialWarrantyStatus;
         warranty.warrantyService = warrantyService;
         warranty.warrantyIssueDate = warrantyIssueDate;

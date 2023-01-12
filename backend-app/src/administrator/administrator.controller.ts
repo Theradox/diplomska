@@ -8,7 +8,7 @@ import { WarrantyDTO } from 'src/shared/warranty/warranty.dto';
 
 @Controller('administrator')
 @UseGuards(JwtAuthGuard, RolesGuard)
-// @Roles(Role.Admin)
+@Roles(Role.Admin)
 export class AdministratorController {
 
     constructor(private readonly administratorService: AdministratorService) {

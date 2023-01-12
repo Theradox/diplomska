@@ -104,21 +104,17 @@ export class AuthService {
             const userOrganization = user.organizationType;
             const mspId = userOrganization.charAt(0).toUpperCase() + userOrganization.slice(1) + 'MSP';
 
-            console.log("111")
             const ccpPath = path.resolve(__dirname, '..', '..', 'config', `connection-profile-${userOrganization}.json`);
             const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
             // Create a new CA client for interacting with the CA.
             const caURL = ccp.certificateAuthorities[`ca.${userOrganization}.com`].url;
             const ca = new FabricCAServices(caURL);
-            console.log("222")
 
             // Create a new file system based wallet for managing identities.
             const walletPath = path.join(process.cwd(), `/wallet/${userOrganization}`);
             const wallet = await Wallets.newFileSystemWallet(walletPath);
             console.log(`Wallet path: ${walletPath}`);
-
-            console.log("333")
 
             // Check to see if we've already enrolled the user.
             const userIdentity = await wallet.get(user.username);
@@ -126,7 +122,6 @@ export class AuthService {
                 console.log('An identity for the user user.username" already exists in the wallet');
                 return;
             }
-            console.log("444")
 
             // Check to see if we've already enrolled the admin user.
             const adminIdentity = await wallet.get('admin');
@@ -135,12 +130,10 @@ export class AuthService {
                 console.log('Run the enrollRetailerAdmin.ts application before retrying');
                 return;
             }
-            console.log("555")
 
             // build a user object for authenticating with the CA
             const provider = wallet.getProviderRegistry().getProvider(adminIdentity.type);
             const adminUser = await provider.getUserContext(adminIdentity, 'admin');
-            console.log("ADMIN USER " + adminUser)
 
             // Register the user, enroll the user, and import the new identity into the wallet.
             const secret = await ca.register({
@@ -148,11 +141,9 @@ export class AuthService {
                 enrollmentID: user.username,
                 role: 'client',
             }, adminUser);
-            console.log("SECRET " + secret)
 
             const enrollment = await ca.enroll({ enrollmentID: user.username, enrollmentSecret: secret, });
 
-            console.log("ENROLLMENT " + enrollment)
             const x509Identity: X509Identity = {
                 credentials: {
                     certificate: enrollment.certificate,
@@ -169,7 +160,11 @@ export class AuthService {
             process.exit(1);
         }
 
-        user.roles = Role.User;
+        if (user.organizationType === OrganizationEnum.ADMINISTRATOR) {
+            user.roles = Role.Admin;
+        } else {
+            user.roles = Role.User;
+        }
 
         const salt = await bcrypt.genSalt();
         user.password = await bcrypt.hash(user.password, salt);
@@ -189,21 +184,17 @@ export class AuthService {
             const userOrganization = 'org1';
             const mspId = userOrganization.charAt(0).toUpperCase() + userOrganization.slice(1) + 'MSP';
 
-            console.log("111")
             const ccpPath = path.resolve(__dirname, '..', '..', 'config', `connection-profile-${userOrganization}.json`);
             const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
             // Create a new CA client for interacting with the CA.
             const caURL = ccp.certificateAuthorities[`ca.${userOrganization}.com`].url;
             const ca = new FabricCAServices(caURL);
-            console.log("222")
 
             // Create a new file system based wallet for managing identities.
             const walletPath = path.join(process.cwd(), `/wallet/${userOrganization}`);
             const wallet = await Wallets.newFileSystemWallet(walletPath);
             console.log(`Wallet path: ${walletPath}`);
-
-            console.log("333")
 
             // Check to see if we've already enrolled the user.
             const userIdentity = await wallet.get(user.username);
@@ -211,7 +202,6 @@ export class AuthService {
                 console.log('An identity for the user user.username" already exists in the wallet');
                 return;
             }
-            console.log("444")
 
             // Check to see if we've already enrolled the admin user.
             const adminIdentity = await wallet.get('admin');
@@ -220,12 +210,10 @@ export class AuthService {
                 console.log('Run the enrollRetailerAdmin.ts application before retrying');
                 return;
             }
-            console.log("555")
 
             // build a user object for authenticating with the CA
             const provider = wallet.getProviderRegistry().getProvider(adminIdentity.type);
             const adminUser = await provider.getUserContext(adminIdentity, 'admin');
-            console.log("ADMIN USER " + adminUser)
 
             // Register the user, enroll the user, and import the new identity into the wallet.
             const secret = await ca.register({
@@ -233,11 +221,9 @@ export class AuthService {
                 enrollmentID: user.username,
                 role: 'client',
             }, adminUser);
-            console.log("SECRET " + secret)
 
             const enrollment = await ca.enroll({ enrollmentID: user.username, enrollmentSecret: secret, });
 
-            console.log("ENROLLMENT " + enrollment)
             const x509Identity: X509Identity = {
                 credentials: {
                     certificate: enrollment.certificate,

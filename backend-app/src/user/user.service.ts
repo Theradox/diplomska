@@ -141,6 +141,10 @@ export class UserService {
 
     public async createWarranty(identityKey: string, warrantyModel: WarrantyModel): Promise<WarrantyModel> {
         let result;
+        
+        const initalOwner = this.authService.extractUsername(identityKey).toString();
+
+
         await this.ledgerService.getContract(
             this.authService.extractUsername(identityKey),
             this.organization
@@ -149,6 +153,7 @@ export class UserService {
                 result = await contract.submitTransaction('CreateWarranty',
                     warrantyModel.id.toString(),
                     warrantyModel.issuer.toString(),
+                    initalOwner,
                     warrantyModel.warrantyService.toString(),
                     warrantyModel.warrantyExpirationDate.toString());
                 console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
@@ -157,7 +162,7 @@ export class UserService {
                 console.log(e);
                 throw new HttpException({
                     status: HttpStatus.BAD_REQUEST,
-                    error: 'Create warranti failed: ' + e,
+                    error: 'Create warranty failed: ' + e,
                 }, HttpStatus.FORBIDDEN);
             });
         return JSON.parse(result);
