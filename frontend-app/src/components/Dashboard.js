@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -25,8 +25,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import LayersIcon from '@mui/icons-material/Layers';
 import { Link } from "react-router-dom";
 import AuthService from "../services/auth.service";
-import {Button} from '@material-ui/core';
-import {useNavigate} from "react-router-dom";
+import { Button } from '@material-ui/core';
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -88,19 +88,19 @@ function DashboardContent() {
     const currentUser = JSON.parse(localStorage.getItem("user"));
 
     if (!currentUser) {
-        navigate('/login');
-        window.location.reload();
+      navigate('/login');
+      window.location.reload();
     }
   }, []);
 
 
 
-  const logout = () =>{ 
+  const logout = () => {
     localStorage.clear();
     navigate('/home');
   }
 
-  const login = () =>{ 
+  const login = () => {
     localStorage.clear();
     navigate('/login');
   }
@@ -110,79 +110,92 @@ function DashboardContent() {
   // const accessToken = currentUser.access_token;
   const organization = currentUser.organization;
 
-  
+
   const renderAuthButton = () => {
     const currentUser = JSON.parse(localStorage.getItem("user"));
-      if (currentUser) {
-          return <Button variant="contained" color="secondary" onClick={logout}>Logout</Button>
-      } else {
-          return <Button variant="contained" color="secondary" onClick={login}>Login</Button>
-      }
+    if (currentUser) {
+      return <Button variant="contained" color="secondary" onClick={logout}>Logout</Button>
+    } else {
+      return <Button variant="contained" color="secondary" onClick={login}>Login</Button>
+    }
   }
 
   const renderOptions = (organization) => {
-    if (organization === 'user') {
+    if (organization === 'retailer') {
       return (
         <Container>
-          <Link to={"/all-warranties"}>
-          <ListItemButton>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="All Warranties" />
-          </ListItemButton>
+          <Link to={"/warranties"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="All Warranties" />
+            </ListItemButton>
           </Link>
 
-        <Divider sx={{ my: 1 }} />
+          <Divider sx={{ my: 1 }} />
 
-        <Link to={"/my-warranties"}>
-          <ListItemButton>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Warranties" />
-          </ListItemButton>
+          <Link to={"/create-warranty"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <LayersIcon />
+              </ListItemIcon>
+              <ListItemText primary="Create Warranty" />
+            </ListItemButton>
           </Link>
-
-        <Divider sx={{ my: 1 }} />
-
-        <Link to={"/create-warranty"}>
-        <ListItemButton>
-          <ListItemIcon>
-            <LayersIcon />
-          </ListItemIcon>
-          <ListItemText primary="Create Warranty" />
-        </ListItemButton>
-        </Link>
-      </Container>
+        </Container>
       );
 
     } else if (organization === 'administrator') {
       return (
         <Link to={"/administrator-warranties"}>
-        <ListItemButton>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Warranties" />
-        </ListItemButton>
+          <ListItemButton>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Warranties" />
+          </ListItemButton>
         </Link>
       );
 
-    } 
-    
-    // else if (organization === 'user') {
-    //   return (
-    //     <Link to={"/my-warranties"}>
-    //     <ListItemButton>
-    //       <ListItemIcon>
-    //         <DashboardIcon />
-    //       </ListItemIcon>
-    //       <ListItemText primary="My Warranties" />
-    //     </ListItemButton>
-    //     </Link>
-    //   );
-    //  }
+    }
+
+    else if (organization === 'user') {
+      return (
+        <Container>
+          <Link to={"/all-warranties"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="All Warranties" />
+            </ListItemButton>
+          </Link>
+
+          <Divider sx={{ my: 1 }} />
+
+          <Link to={"/my-warranties"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="My Warranties" />
+            </ListItemButton>
+          </Link>
+
+          <Divider sx={{ my: 1 }} />
+
+          <Link to={"/create-warranty"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <LayersIcon />
+              </ListItemIcon>
+              <ListItemText primary="Create Warranty" />
+            </ListItemButton>
+          </Link>
+        </Container>
+      );
+    }
   }
 
   const [open, setOpen] = React.useState(true);
@@ -226,7 +239,7 @@ function DashboardContent() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            
+
             {renderAuthButton()}
 
 
@@ -239,7 +252,7 @@ function DashboardContent() {
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
-            }}administrator-warranties
+            }} administrator-warranties
           >
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
@@ -297,7 +310,7 @@ function DashboardContent() {
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container> */}
-          
+
         </Box>
       </Box>
     </ThemeProvider>

@@ -1,12 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Container, Paper} from '@material-ui/core';
-import RetailerService from '../../services/retailer.service';
-import {useNavigate} from "react-router-dom";
-import TextField from '@material-ui/core/TextField';
-import {makeStyles} from '@material-ui/core/styles';
+import { Button, Container, Paper } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import Axios from "../../custom-axios/axios.js";
-import { Link } from "react-router-dom";
-import retailerService from '../../services/retailer.service';
 
 const useStyles = makeStyles((theme) => ({
     root: {

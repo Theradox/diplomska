@@ -13,6 +13,7 @@ import RetailerWarrantyHistory from './retailer/RetailerWarrantyHistory';
 import RetailerAssignWarrantyOwnership from './retailer/RetailerAssignWarrantyOwnership';
 import UserWarrantyDetail from './user/UserWarrantyDetail';
 import UserWarranties from './user/UserWarranties';
+import UserGetWarranties from './user/UserGetWarranties';
 import UserWarrantyHistory from './user/UserWarrantyHistory';
 import UserTransferWarranty from './user/UserTransferWarranty';
 import AdministratorGetWarrantyHistory from './administrator/AdministratorGetWarrantyHistory';
