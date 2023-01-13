@@ -86,7 +86,7 @@ export default function RetailerGetWarranties() {
                             id: {warranty.id}<br />
                             Service: {warranty.warrantyService}<br />
                             Expiration Date: {warranty.warrantyExpirationDate}<br />
-                            Issue Date: {warranty.warrantyExpirationDate}<br />
+                            Issue Date: {warranty.warrantyIssueDate}<br />
                             Status: {warranty.warrantyStatus}<br />
                             owner: {warranty.owner}<br />
                             issuer: {warranty.issuer}

@@ -41,9 +41,6 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [organizationType, setOrganizationType] = useState('')
 
-
-
-
   const loginUser = async (e) => {
     e.preventDefault()
     await AuthService.login(username, email, organizationType, password)
