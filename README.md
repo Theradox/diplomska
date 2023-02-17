@@ -39,7 +39,7 @@
 
 # English version
 
-This project represents my Bachelors thesis @ FCSE Skopje, 2021
+This project represents my Bachelors thesis @ FCSE Skopje, 2023
 #### Team Members: Bojan Spasovski
 
 ## Technologies used:
